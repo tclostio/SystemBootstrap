@@ -37,10 +37,14 @@ DONE="\n"
 
 # The main runtime. This is where it all comes together.
 main() {
+    echo "[*] Bootsrapping system"
     set_pkg_manager
     update_sys
     install_base
-    install_from_pkg
+    install_from_pkg &
+    install_from_pip &
+    wait
+    echo "[*] Bootstrap complete"
 }
 
 # Determine and set the package manager for the system.
@@ -83,7 +87,7 @@ update_sys() {
     return 0 # indicate success
 }
 
-# Install some base packages that cannot be run in parallel with the other functions
+# Install some base package dependencies 
 install_base() {
     echo "[*] Installing base packages"
     $MGR install zsh -y
@@ -97,12 +101,12 @@ install_base() {
     return 0 # indicate success
 }
 
+# Install packages from the distro repositories
 install_from_pkg() {
     echo "[*] Installing packages from distro repositories"
     $MGR install qbittorrent -y
     $MGR install nmap -y
     $MGR install nikto -y
-    $MGR install sqlmap -y
     $MGR install rxvt-unicode -y
     $MGR install hashcat -y
     $MGR install hydra -y
@@ -110,6 +114,13 @@ install_from_pkg() {
     echo "[*] Repository package installation complete"
 
     return 0 # indicate success
+}
+
+# Install packages from pip
+install_from_pip() {
+    prog="--progress-bar ascii"
+    pip3 install h8mail $prog
+    pip3 install sqlmap $prog
 }
 
 
