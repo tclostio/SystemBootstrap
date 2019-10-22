@@ -75,6 +75,8 @@ set_pkg_manager() {
             return -1 # error code, couldn't determine the base OS
             ;;
     esac
+
+    return 0 # indicate success
 }
 
 # Update and upgrade the system, if necessary
@@ -121,6 +123,8 @@ install_from_pip() {
     prog="--progress-bar ascii"
     pip3 install h8mail $prog
     pip3 install sqlmap $prog
+
+    return 0 # indicate success
 }
 
 
