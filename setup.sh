@@ -43,6 +43,8 @@ main() {
     install_base
     install_from_pkg &
     install_from_pip &
+    # Install OMZSH
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" &
     setup_env        &
     wait
     echo "[*] Bootstrap complete"
@@ -96,7 +98,6 @@ install_base() {
     $MGR install zsh         -y
     $MGR install git         -y
     $MGR install npm         -y
-    $MGR install yarn        -y
     $MGR install curl        -y
     $MGR install python3     -y
     $MGR install neovim      -y
@@ -123,8 +124,8 @@ install_from_pkg() {
 # Install packages from pip
 install_from_pip() {
     prog="--progress-bar pretty"
-    pip3 install h8mail $prog
-    pip3 install sqlmap $prog
+    pip3 install --user h8mail $prog
+    pip3 install --user sqlmap $prog
     pip3 install --user pynvim $prog
 
     return 0 # indicate success
@@ -138,8 +139,6 @@ install_from_src() {
 # Configure zsh and neovim development environment
 setup_env() {
     echo "[*] Setting up environment"
-    # Install OMZSH
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     # Move our init file to the correct location
     mkdir -p ~/.config/nvim/
