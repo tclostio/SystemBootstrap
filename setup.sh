@@ -145,6 +145,9 @@ setup_env() {
     mkdir -p ~/.config/nvim/
     cp init.vim ~/.config/nvim/
 
+    # update nvim plugins
+    nvim -c 'PlugInstall | q'
+
     # update our Coc lanuage server extensions
     nvim -c 'CocInstall -sync coc-go       | q'
     nvim -c 'CocInstall -sync coc-sh       | q'
