@@ -120,7 +120,7 @@ install_from_pkg() {
 
 # Install packages from pip
 install_from_pip() {
-    prog="--progress-bar ascii"
+    prog="--progress-bar pretty"
     pip3 install h8mail $prog
     pip3 install sqlmap $prog
 
