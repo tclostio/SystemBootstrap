@@ -43,6 +43,7 @@ main() {
     install_base
     install_from_pkg &
     install_from_pip &
+    setup_env        &
     wait
     echo "[*] Bootstrap complete"
 }
@@ -109,7 +110,6 @@ install_from_pkg() {
     $MGR install qbittorrent  -y
     $MGR install nmap         -y
     $MGR install nikto        -y
-    $MGR install rxvt-unicode -y
     $MGR install hashcat      -y
     $MGR install hydra        -y
     $MGR install aircrack-ng  -y
@@ -127,6 +127,22 @@ install_from_pip() {
     return 0 # indicate success
 }
 
+# Build and install applications from source code
+install_from_src() {
+    return 0 # indicate success
+}
+
+# Configure zsh and neovim development environment
+setup_env() {
+    # Install OMZSH
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+    # Move our init file to the correct location
+    mkdir -p ~/nvim/
+    cp init.vim ~/nvim/
+
+    return 0 # indicate success
+}
 
 main
 
