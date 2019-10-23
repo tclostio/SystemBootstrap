@@ -95,6 +95,8 @@ install_base() {
     echo "[*] Installing base packages"
     $MGR install zsh         -y
     $MGR install git         -y
+    $MGR install npm         -y
+    $MGR install yarn        -y
     $MGR install curl        -y
     $MGR install python3     -y
     $MGR install neovim      -y
@@ -135,12 +137,27 @@ install_from_src() {
 
 # Configure zsh and neovim development environment
 setup_env() {
+    echo "[*] Setting up environment"
     # Install OMZSH
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
     # Move our init file to the correct location
-    mkdir -p ~/nvim/
-    cp init.vim ~/nvim/
+    mkdir -p ~/.config/nvim/
+    cp init.vim ~/.config/nvim/
+
+    # update our Coc lanuage server extensions
+    nvim -c 'CocInstall -sync coc-go       | q'
+    nvim -c 'CocInstall -sync coc-sh       | q'
+    nvim -c 'CocInstall -sync coc-sql      | q'
+    nvim -c 'CocInstall -sync coc-css      | q'
+    nvim -c 'CocInstall -sync coc-ccls     | q'
+    nvim -c 'CocInstall -sync coc-java     | q'
+    nvim -c 'CocInstall -sync coc-json     | q'
+    nvim -c 'CocInstall -sync coc-html     | q'
+    nvim -c 'CocInstall -sync coc-python   | q'
+    nvim -c 'CocInstall -sync coc-terminal | q'
+
+    echo "[*] Environment setup complete"
 
     return 0 # indicate success
 }
