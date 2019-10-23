@@ -123,6 +123,7 @@ install_from_pip() {
     prog="--progress-bar pretty"
     pip3 install h8mail $prog
     pip3 install sqlmap $prog
+    pip3 install --user pynvim $prog
 
     return 0 # indicate success
 }
