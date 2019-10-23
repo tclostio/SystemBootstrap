@@ -82,7 +82,7 @@ set_pkg_manager() {
 # Update and upgrade the system, if necessary
 update_sys() {
     echo "[*] Updating system"
-    $MGR update -y
+    $MGR update  -y
     $MGR upgrade -y
     echo "[*] System updates complete"
 
@@ -92,11 +92,11 @@ update_sys() {
 # Install some base package dependencies 
 install_base() {
     echo "[*] Installing base packages"
-    $MGR install zsh -y
-    $MGR install git -y
-    $MGR install curl -y
-    $MGR install python3 -y
-    $MGR install neovim -y
+    $MGR install zsh         -y
+    $MGR install git         -y
+    $MGR install curl        -y
+    $MGR install python3     -y
+    $MGR install neovim      -y
     $MGR install python3-pip -y
     echo "[*] Base package installation complete"
 
@@ -106,13 +106,13 @@ install_base() {
 # Install packages from the distro repositories
 install_from_pkg() {
     echo "[*] Installing packages from distro repositories"
-    $MGR install qbittorrent -y
-    $MGR install nmap -y
-    $MGR install nikto -y
+    $MGR install qbittorrent  -y
+    $MGR install nmap         -y
+    $MGR install nikto        -y
     $MGR install rxvt-unicode -y
-    $MGR install hashcat -y
-    $MGR install hydra -y
-    $MGR install aircrack-ng -y
+    $MGR install hashcat      -y
+    $MGR install hydra        -y
+    $MGR install aircrack-ng  -y
     echo "[*] Repository package installation complete"
 
     return 0 # indicate success
