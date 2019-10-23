@@ -3,7 +3,7 @@
 "*****************************************************************************
 "" Vim-PLug core
 "*****************************************************************************
-let vimplug_exists=expand('~/.neovim/autoload/plug.vim')
+let vimplug_exists=expand('~/.local/share/nvim/site/autoload/plug.vim')
 
 let g:vim_bootstrap_langs = "c,go,javascript,typescript,php,html,lisp,scala,python"
 let g:vim_bootstrap_editor = "neovim"				" nvim or vim
@@ -22,11 +22,15 @@ if !filereadable(vimplug_exists)
 endif
 
 " Required:
-call plug#begin(expand('~/.neovim/plugged'))
+call plug#begin(expand('~/.local/share/plugged'))
 
 "*****************************************************************************
 "" Plug install packages
 "*****************************************************************************
+Plug 'roxma/nvim-yarp'
+Plug 'roxma/vim-hug-neovim-rpc'
+Plug 'Shougo/deoplete.nvim'
+PlugInstall
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'tpope/vim-commentary'
@@ -68,13 +72,6 @@ Plug 'honza/vim-snippets'
 Plug 'tomasr/molokai'
 
 "" deoplete code completion
-if has('nvim')
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-    Plug 'Shougo/deoplete.nvim'
-    Plug 'roxma/nvim-yarp'
-    Plug 'roxma/vim-hug-neovim-rpc'
-endif
 let g:deoplete#enable_at_startup = 1
 
 "*****************************************************************************
