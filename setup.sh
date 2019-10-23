@@ -43,10 +43,9 @@ main() {
     install_base
     install_from_pkg &
     install_from_pip &
-    # Install OMZSH
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" &
-    setup_env        &
+    install_omzsh    &
     wait
+    setup_env        
     echo "[*] Bootstrap complete"
 }
 
@@ -133,6 +132,13 @@ install_from_pip() {
 
 # Build and install applications from source code
 install_from_src() {
+    return 0 # indicate success
+}
+
+# Install Oh My zsh
+install_omzsh() {
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" 
+
     return 0 # indicate success
 }
 
