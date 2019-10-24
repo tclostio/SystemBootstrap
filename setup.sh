@@ -52,6 +52,7 @@ main() {
 # Determine and set the package manager for the system.
 set_pkg_manager() {
     declare -A sys_to_pkg=(
+        ["suse"]="zypper"
         ["debian"]="apt"
         ["fedora"]="dnf"
         ["redhat"]="dnf"
@@ -61,6 +62,9 @@ set_pkg_manager() {
     SYS=$(cat /etc/*-release)
 
     case $SYS in
+        *"suse"*)
+            MGR=${sys_to_pkg["suse"]}
+            ;;
         *"debian"*)
             MGR=${sys_to_pkg["debian"]}
             ;;
