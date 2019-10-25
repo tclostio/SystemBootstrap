@@ -63,19 +63,19 @@ set_pkg_manager() {
 
     case $SYS in
         *"suse"*)
-            MGR=${sys_to_pkg["suse"]}
+            MGR="sudo ${sys_to_pkg["suse"]}"
             ;;
         *"debian"*)
-            MGR=${sys_to_pkg["debian"]}
+            MGR="sudo ${sys_to_pkg["debian"]}"
             ;;
         *"fedora"*)
-            MGR=${sys_to_pkg["fedora"]}
+            MGR="sudo ${sys_to_pkg["fedora"]}"
             ;;
         *"redhat"*)
-            MGR=${sys_to_pkg["redhat"]}
+            MGR="sudo ${sys_to_pkg["redhat"]}"
             ;;
         *"archlinux"*)
-            MGR=${sys_to_pkg["archlinux"]}
+            MGR="sudo ${sys_to_pkg["archlinux"]}"
             ;;
         *)
             return -1 # error code, couldn't determine the base OS
